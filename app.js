@@ -446,7 +446,7 @@ function openCartDrawer() {
                     instructor: course.instructor || "Expert Mentor",
                     progress: 0,
                     lessons: course.lessons || "12 Lessons",
-                    image: course.image || "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+                    image: course.image || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&auto=format&fit=crop&q=80"
                 });
             }
         });
@@ -482,7 +482,7 @@ function getEnrolled() {
                 instructor: "Sarah Jenkins",
                 progress: 68,
                 lessons: "8 Lessons",
-                image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+                image: "https://images.unsplash.com/photo-1618788372246-79faff0c3742?w=600&auto=format&fit=crop&q=80"
             },
             {
                 id: 2,
@@ -490,7 +490,7 @@ function getEnrolled() {
                 instructor: "David Chen",
                 progress: 24,
                 lessons: "42 Lessons",
-                image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80"
             }
         ];
     }
@@ -527,7 +527,7 @@ function renderCartItems(drawerEl) {
 
         card.innerHTML = `
             <div class="w-16 h-16 rounded-lg bg-surface-variant flex-shrink-0 overflow-hidden">
-                <img src="${item.image || 'https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg'}" class="w-full h-full object-cover">
+                <img src="${item.image || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&auto=format&fit=crop&q=80'}" class="w-full h-full object-cover">
             </div>
             <div class="flex-grow">
                 <h4 class="font-label-md text-label-md text-on-surface line-clamp-1">${item.title}</h4>

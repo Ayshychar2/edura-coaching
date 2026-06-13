@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Student Dashboard - Edura Coaching</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004ac6",
+                        "surface": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed": "#00174b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-container": "#eff0f2",
+                        "secondary": "#712ae2",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "tertiary-fixed": "#e1e2e4",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "inverse-surface": "#263143",
+                        "on-secondary-fixed": "#25005a",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c5c6c8",
+                        "secondary-fixed": "#eaddff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "inverse-on-surface": "#ecf1ff",
+                        "outline": "#737686",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#111c2d",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary-container": "#6b6d6f",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#8a4cfc",
+                        "surface-container": "#e7eeff",
+                        "surface-tint": "#0053db",
+                        "surface-variant": "#d8e3fb",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-surface": "#111c2d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#525557",
+                        "background": "#f9f9ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .sidebar-item-active {
+            background-color: #004ac6;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 74, 198, 0.2);
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="app.js" defer></script>
+</head>
+<body class="antialiased min-h-screen flex bg-slate-50">
+    
+    <!-- MOBILE SIDEBAR DRAWER OVERLAY -->
+    <div id="mobile-sidebar-overlay" class="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm hidden lg:hidden"></div>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 lg:sticky lg:h-screen">
+        <!-- Sidebar Brand Header -->
+        <div class="h-20 border-b border-slate-100 flex items-center px-6 gap-3">
+            <span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">school</span>
+            <a class="text-xl font-extrabold text-slate-800 tracking-tight" href="index.html">Edura Coach</a>
+        </div>
+
+        <!-- Student Basic Profile Info -->
+        <div class="p-6 border-b border-slate-100 flex items-center gap-3">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-lg border border-primary/20">
+                AM
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-800 text-sm sidebar-user-name">Alex Morgan</h4>
+                <p class="text-xs text-slate-400">Premium Student</p>
+            </div>
+        </div>
+
+        <!-- Navigation Stack -->
+        <nav class="flex-grow p-4 space-y-1.5 overflow-y-auto">
+            <button data-tab="tab-dashboard" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left sidebar-item-active">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                <span>Dashboard</span>
+            </button>
+            <button data-tab="tab-courses" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left">
+                <span class="material-symbols-outlined text-[20px]">menu_book</span>
+                <span>My Courses</span>
+                <span class="ml-auto bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full courses-count-badge">0</span>
+            </button>
+            <button data-tab="tab-live" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left">
+                <span class="material-symbols-outlined text-[20px]">videocam</span>
+                <span>Live Classes</span>
+                <span class="ml-auto w-2 h-2 rounded-full bg-error animate-pulse"></span>
+            </button>
+            <button data-tab="tab-settings" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span>Settings</span>
+            </button>
+            
+            <div class="pt-4 border-t border-slate-100 my-4"></div>
+            
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all">
+                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                <span>Back to Homepage</span>
+            </a>
+        </nav>
+
+        <!-- Sidebar Promo Panel -->
+        <div class="p-4 mt-auto">
+            <div class="bg-gradient-to-tr from-secondary/15 to-primary/10 border border-secondary/20 rounded-2xl p-4 text-center">
+                <span class="material-symbols-outlined text-secondary text-[28px] mb-2">workspace_premium</span>
+                <h5 class="text-xs font-bold text-slate-800 mb-1">Elite Career Path</h5>
+                <p class="text-[10px] text-slate-500 mb-3">Get 1-on-1 private mentoring with elite tech faculty.</p>
+                <a href="contact.html?inquiry=faculty" class="block w-full text-center bg-secondary hover:bg-secondary/95 text-white text-[11px] font-bold py-2 rounded-lg transition-colors">Apply Now</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT AREA -->
+    <div class="flex-grow flex flex-col min-w-0">
+        
+        <!-- TOPBAR SHARED COMPONENT -->
+        <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-30">
+            <!-- Mobile Toggle / Title -->
+            <div class="flex items-center gap-4">
+                <button id="mobile-sidebar-toggle" class="lg:hidden text-slate-600 p-2 hover:bg-slate-100 rounded-full transition-all">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <h2 class="text-lg font-bold text-slate-800" id="topbar-title">Student Dashboard</h2>
+            </div>
+
+            <!-- Topbar Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Search bar (filters courses list) -->
+                <div class="hidden md:flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+                    <span class="material-symbols-outlined text-slate-400 text-[18px] mr-2">search</span>
+                    <input id="dashboard-search-input" class="bg-transparent border-none p-0 focus:ring-0 text-xs w-48 text-slate-700 outline-none placeholder:text-slate-400" placeholder="Search courses..." type="text">
+                </div>
+
+                <!-- Notifications Bell -->
+                <div class="relative">
+                    <button id="noti-dropdown-btn" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all relative">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute top-1 right-1 bg-error w-2 h-2 rounded-full ring-2 ring-white"></span>
+                    </button>
+                    <!-- Notification Dropdown Menu -->
+                    <div id="noti-dropdown" class="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-200/60 p-4 hidden z-50">
+                        <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm">Notifications</h4>
+                            <button class="text-xs text-primary hover:underline noti-clear-btn">Clear All</button>
+                        </div>
+                        <div class="space-y-3 max-h-60 overflow-y-auto" id="noti-list">
+                            <div class="flex gap-3 items-start p-2 rounded-xl hover:bg-slate-50 transition-all cursor-pointer">
+                                <span class="material-symbols-outlined text-secondary bg-secondary/10 p-1.5 rounded-lg text-sm">event</span>
+                                <div class="flex-grow">
+                                    <p class="text-xs font-semibold text-slate-800">New Live Session Scheduled</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Sarah Jenkins (UI/UX) • 10m ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 items-start p-2 rounded-xl hover:bg-slate-50 transition-all cursor-pointer">
+                                <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg text-sm">upload_file</span>
+                                <div class="flex-grow">
+                                    <p class="text-xs font-semibold text-slate-800">New resources uploaded</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">David Chen (Full-stack) • 2h ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 items-start p-2 rounded-xl hover:bg-slate-50 transition-all cursor-pointer">
+                                <span class="material-symbols-outlined text-success bg-green-500/10 p-1.5 rounded-lg text-sm text-green-500">task_alt</span>
+                                <div class="flex-grow">
+                                    <p class="text-xs font-semibold text-slate-800">Welcome to Edura Portal!</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Setup your study preferences</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-6 w-px bg-slate-200"></div>
+
+                <!-- User Profile Dropdown -->
+                <div class="relative">
+                    <button id="profile-dropdown-btn" class="flex items-center gap-2 hover:bg-slate-50 p-1 rounded-full transition-all">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold font-semibold">
+                            AM
+                        </div>
+                        <span class="material-symbols-outlined text-slate-400 text-[18px]">expand_more</span>
+                    </button>
+                    <!-- User Dropdown Menu -->
+                    <div id="profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-200/60 py-2 hidden z-50">
+                        <div class="px-4 py-2.5 border-b border-slate-100">
+                            <p class="text-xs text-slate-400">Signed in as</p>
+                            <p class="text-sm font-bold text-slate-800 sidebar-user-name">Alex Morgan</p>
+                            <p class="text-[11px] text-slate-400 student-email-text">alex.morgan@edura.com</p>
+                        </div>
+                        <div class="py-1">
+                            <button data-tab="tab-settings" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 hover:text-slate-800 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">person</span> Profile settings
+                            </button>
+                            <button data-tab="tab-courses" class="w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50 hover:text-slate-800 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">menu_book</span> My Enrolled Courses
+                            </button>
+                        </div>
+                        <div class="border-t border-slate-100 py-1">
+                            <button id="dashboard-logout-btn" class="w-full text-left px-4 py-2 text-xs text-error hover:bg-red-50 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">logout</span> Log Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTAINER FOR VARIOUS TABS (MAIN VIEWS) -->
+        <main class="flex-grow p-6 overflow-y-auto">
+            
+            <!-- PANEL 1: OVERVIEW DASHBOARD -->
+            <div id="tab-dashboard" class="tab-panel active space-y-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white relative overflow-hidden shadow-xl">
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjE1KSIvPjw9c3ZnPg==')] opacity-40"></div>
+                    <div class="relative z-10 max-w-xl space-y-3">
+                        <div class="bg-white/20 text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full w-max">
+                            Study Status
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Welcome back, <span class="sidebar-user-name">Alex</span>!</h1>
+                        <p class="text-white/85 text-xs md:text-sm leading-relaxed">
+                            You are making great progress! Complete your UI/UX Design course assignment before tomorrow's live coaching lab.
+                        </p>
+                        <div class="pt-2">
+                            <button data-tab="tab-courses" class="bg-white text-primary font-bold text-xs px-6 py-2.5 rounded-xl hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-md">
+                                Resume Course
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Count Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white border border-slate-200/80 p-5 rounded-2xl flex items-center gap-4 shadow-sm">
+                        <div class="bg-primary/10 text-primary p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-[24px]">menu_book</span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Enrolled Courses</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1" id="stat-enrolled-count">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-slate-200/80 p-5 rounded-2xl flex items-center gap-4 shadow-sm">
+                        <div class="bg-secondary/10 text-secondary p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-[24px]">schedule</span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Hours Studied</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1">28.5 hrs</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-slate-200/80 p-5 rounded-2xl flex items-center gap-4 shadow-sm">
+                        <div class="bg-green-500/10 text-green-500 p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Certificates</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1" id="stat-certs-count">1</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-slate-200/80 p-5 rounded-2xl flex items-center gap-4 shadow-sm">
+                        <div class="bg-amber-500/10 text-amber-500 p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-[24px]">insights</span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Average Progress</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1" id="stat-avg-progress">0%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Split Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left: My Enrolled Courses summary grid (Spans 2 cols) -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-slate-800 text-base">Current Studies</h3>
+                            <button data-tab="tab-courses" class="text-xs text-primary font-semibold hover:underline">View All</button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="overview-courses-grid">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Live Schedule & countdown panel (Spans 1 col) -->
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-slate-800 text-base">Live Coaching Lab</h3>
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                            <!-- Background gradient flare -->
+                            <div class="absolute -top-12 -right-12 w-24 h-24 bg-secondary/5 rounded-full blur-xl"></div>
+                            
+                            <div>
+                                <span class="bg-error/10 text-error text-[10px] font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1 animate-pulse uppercase tracking-wider mb-4">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-error"></span> LIVE STREAMING SOON
+                                </span>
+                                <h4 class="font-bold text-slate-800 text-sm leading-snug">UI/UX Auto-Layout Mastery</h4>
+                                <p class="text-xs text-slate-400 mt-1">Instructor: Sarah Jenkins</p>
+                                
+                                <div class="my-6 py-4 px-3 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-around text-center">
+                                    <div>
+                                        <p class="text-lg font-bold text-slate-800" id="timer-hours">02</p>
+                                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Hours</p>
+                                    </div>
+                                    <span class="text-slate-300 font-bold">:</span>
+                                    <div>
+                                        <p class="text-lg font-bold text-slate-800" id="timer-mins">45</p>
+                                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Minutes</p>
+                                    </div>
+                                    <span class="text-slate-300 font-bold">:</span>
+                                    <div>
+                                        <p class="text-lg font-bold text-slate-800" id="timer-secs">12</p>
+                                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Seconds</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button id="join-live-btn" class="w-full bg-secondary hover:bg-secondary/95 text-white font-bold text-xs py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                                Enter Live Classroom
+                            </button>
+                        </div>
+
+                        <!-- Mentors and Buddies list -->
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-4">
+                            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider">Online Mentors</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden relative">
+                                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb-GzG4Wk9-x5rLgC8rQy3Tz0D4w4w4w" class="w-full h-full object-cover error-img-fallback">
+                                            <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 ring-2 ring-white"></span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-800">Sarah Jenkins</p>
+                                            <p class="text-[10px] text-slate-400">UI/UX Design Mentor</p>
+                                        </div>
+                                    </div>
+                                    <a href="contact.html?teacher=Sarah%20Jenkins" class="p-1.5 hover:bg-slate-50 text-slate-400 hover:text-primary rounded-full transition-all">
+                                        <span class="material-symbols-outlined text-sm">chat</span>
+                                    </a>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden relative">
+                                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb-GzG4Wk9-x5rLgC8rQy3Tz0D4w4w4w" class="w-full h-full object-cover error-img-fallback">
+                                            <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 ring-2 ring-white"></span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-800">David Chen</p>
+                                            <p class="text-[10px] text-slate-400">Web Development Mentor</p>
+                                        </div>
+                                    </div>
+                                    <a href="contact.html?teacher=David%20Chen" class="p-1.5 hover:bg-slate-50 text-slate-400 hover:text-primary rounded-full transition-all">
+                                        <span class="material-symbols-outlined text-sm">chat</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: MY COURSES VIEW -->
+            <div id="tab-courses" class="tab-panel space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800">My Study Directory</h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Manage and track your active academic curriculum.</p>
+                    </div>
+                    <!-- Filter and Search controls -->
+                    <div class="flex gap-2">
+                        <select id="courses-filter-select" class="text-xs rounded-xl border border-slate-200 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-600">
+                            <option value="all">All Status</option>
+                            <option value="active">Active Only</option>
+                            <option value="completed">Completed Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid for Enrolled Courses -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="my-courses-full-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- PANEL 3: LIVE CLASSES VIEW -->
+            <div id="tab-live" class="tab-panel space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">Live Session Schedule</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Participate in live coaching labs, workshops, and team lectures.</p>
+                </div>
+                
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <!-- Live Classes List -->
+                    <div class="divide-y divide-slate-100" id="live-classes-schedule-list">
+                        <!-- Class item 1 -->
+                        <div class="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-slate-50 transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-secondary/15 text-secondary p-3 rounded-xl flex-shrink-0">
+                                    <span class="material-symbols-outlined text-[28px]">desktop_windows</span>
+                                </div>
+                                <div>
+                                    <span class="bg-error/10 text-error text-[9px] font-extrabold px-2.5 py-0.5 rounded-full inline-block mb-1.5 uppercase">Live In 2 Hours</span>
+                                    <h4 class="font-bold text-slate-800 text-sm md:text-base leading-tight">UI/UX Auto-Layout Mastery</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Sarah Jenkins • 12 Lessons • Practical interactive layout building, constraints, and grids</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto">
+                                <button class="flex-grow md:flex-grow-0 bg-secondary hover:bg-secondary/95 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition-all inline-flex items-center justify-center gap-2 live-join-btn-trigger">
+                                    <span class="material-symbols-outlined text-[16px]">videocam</span> Join Lecture Room
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Class item 2 -->
+                        <div class="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-slate-50 transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-primary/10 text-primary p-3 rounded-xl flex-shrink-0">
+                                    <span class="material-symbols-outlined text-[28px]">code</span>
+                                </div>
+                                <div>
+                                    <span class="bg-slate-100 text-slate-600 text-[9px] font-bold px-2.5 py-0.5 rounded-full inline-block mb-1.5 uppercase">June 15 • 10:00 AM</span>
+                                    <h4 class="font-bold text-slate-800 text-sm md:text-base leading-tight">Node.js Express backend API design</h4>
+                                    <p class="text-xs text-slate-400 mt-1">David Chen • 42 Lessons • Building scalable middleware, security authentication, and database schemas.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto">
+                                <button class="flex-grow md:flex-grow-0 border border-slate-200 text-slate-400 font-semibold text-xs px-6 py-2.5 rounded-xl transition-all cursor-not-allowed inline-flex items-center justify-center gap-2" disabled>
+                                    <span class="material-symbols-outlined text-[16px]">lock</span> Room Closed
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 4: SETTINGS VIEW -->
+            <div id="tab-settings" class="tab-panel space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">Profile & Preferences</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Control your student profile parameters and layout choices.</p>
+                </div>
+                
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-2xl">
+                    <form id="settings-profile-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1">
+                                <label class="text-xs font-bold text-slate-500" for="settings-name">Full Name</label>
+                                <input id="settings-name" class="px-4 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-0 outline-none text-xs text-slate-700 input-glow transition-all" value="Alex Morgan" required type="text">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-xs font-bold text-slate-500" for="settings-email">Email Address</label>
+                                <input id="settings-email" class="px-4 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-0 outline-none text-xs text-slate-700 input-glow transition-all" value="alex.morgan@edura.com" required type="email">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1">
+                                <label class="text-xs font-bold text-slate-500" for="settings-phone">Phone Number</label>
+                                <input id="settings-phone" class="px-4 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-0 outline-none text-xs text-slate-700 input-glow transition-all" value="+1 (555) 321-7890" type="text">
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-xs font-bold text-slate-500" for="settings-location">Location</label>
+                                <input id="settings-location" class="px-4 py-2.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-0 outline-none text-xs text-slate-700 input-glow transition-all" value="Tech City, TC" type="text">
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex justify-end gap-2">
+                            <button type="submit" class="bg-primary hover:bg-primary/95 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition-all shadow-sm">
+                                Save Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MAIN DASHBOARD SYSTEM SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seeding default courses inside localStorage if empty
+            initEnrolledCoursesStorage();
+
+            // Setup navigation tabs controllers
+            initTabsControllers();
+
+            // Render courses dynamic elements
+            renderCourses();
+
+            // Dropdowns (Noti & Profile) UI toggles
+            initDropdowns();
+
+            // Run Live session real countdown timer
+            runLiveTimer();
+
+            // Handle Mobile Side Drawer
+            initMobileSidebar();
+
+            // Handle form save settings
+            initSettingsForm();
+
+            // Fallback for missing photos/avatars
+            handleImageFallbacks();
+        });
+
+        // 1. DATA SEEDING & SETUP
+        function initEnrolledCoursesStorage() {
+            try {
+                const enrolled = localStorage.getItem('enrolled_courses');
+                if (!enrolled) {
+                    const defaultEnrolled = [
+                        {
+                            id: 101,
+                            title: "Learn Figma - UI/UX Design Essential Training",
+                            instructor: "Sarah Jenkins",
+                            progress: 68,
+                            lessons: "12 Lessons",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7w2WNuDktBCQswn1sKz1_lcYksXLW319GISmViCCRnyanPVHaTU5Q2prxUEybt6p9cIKDXeFHtg_a2WUZ0Oo2n1uYeLI6wD3xNubNsIe0eI85C6FOEEIj5DGg5k42Ny8Vv15txq0mmzLXYPUIuLELsnLAwuQsTFk8qrGgJ69Z-WU_rEwh0lD9tdDLLf73UrPNsa-v7BMtczYhAB2RxlRO6mGNOj0cEe9_ONUKMPm4Z-8KdXElo5tmbO9lnoheQcXFT8Z4nqAaVLNQ",
+                            category: "UI/UX Design"
+                        },
+                        {
+                            id: 102,
+                            title: "Complete Full-Stack Web Development Bootcamp",
+                            instructor: "David Chen",
+                            progress: 24,
+                            lessons: "42 Lessons",
+                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDbxv87zrQ9qZAvYg_VxYvqb8AmaagLZVjBKh0403WqtHnf1r6jOewePaPrm4K7uO5n-lsxZ5n2l7efXnk2VaJeHNA7vplkeyx3YOAtuxsaZmRhxkh0c40ETw7uKXi5lYXvJyPJZHbGAIHodwLM35N5MzHjbxBQ08ksgHp5F-Hm-0_7kFAQRhvumWv7QQWVnIodB6FNo8fAheKXLe0q1MKbienTBlXvPscTSuFFSv9ZOyQ8aGZLmjq50q25h6FVrNVc3xb8032C_0P9",
+                            category: "Web Development"
+                        }
+                    ];
+                    localStorage.setItem('enrolled_courses', JSON.stringify(defaultEnrolled));
+                }
+                
+                // Load profile name if exists
+                const profile = JSON.parse(localStorage.getItem('student_profile'));
+                if (profile) {
+                    updateProfileUI(profile.name, profile.email);
+                }
+            } catch (err) {
+                console.error("Storage reading error: ", err);
+            }
+        }
+
+        function getEnrolledCourses() {
+            try {
+                return JSON.parse(localStorage.getItem('enrolled_courses')) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        // 2. TABS MANAGEMENT SYSTEM
+        function initTabsControllers() {
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const dropdownItems = document.querySelectorAll('#profile-dropdown button[data-tab]');
+            const generalTabLinks = document.querySelectorAll('button[data-tab], a[data-tab]');
+            
+            const selectTab = (tabId) => {
+                // Hide all panels
+                document.querySelectorAll('.tab-panel').forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                
+                // Show active panel
+                const targetPanel = document.getElementById(tabId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+
+                // Update active class on sidebar items
+                sidebarItems.forEach(item => {
+                    if (item.getAttribute('data-tab') === tabId) {
+                        item.classList.add('sidebar-item-active');
+                        item.classList.remove('text-slate-600', 'hover:bg-slate-100');
+                    } else {
+                        item.classList.remove('sidebar-item-active');
+                        item.classList.add('text-slate-600', 'hover:bg-slate-100');
+                    }
+                });
+
+                // Update topbar header title
+                const titles = {
+                    'tab-dashboard': 'Overview Dashboard',
+                    'tab-courses': 'My Study Directory',
+                    'tab-live': 'Live Classes Schedule',
+                    'tab-settings': 'Account Settings'
+                };
+                const titleEl = document.getElementById('topbar-title');
+                if (titleEl && titles[tabId]) {
+                    titleEl.textContent = titles[tabId];
+                }
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Close mobile sidebar overlay if active
+                const overlay = document.getElementById('mobile-sidebar-overlay');
+                const sidebar = document.getElementById('sidebar');
+                if (overlay && sidebar) {
+                    overlay.classList.add('hidden');
+                    sidebar.classList.add('-translate-x-full');
+                }
+            };
+
+            // Bind triggers
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    selectTab(item.getAttribute('data-tab'));
+                });
+            });
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    selectTab(item.getAttribute('data-tab'));
+                    document.getElementById('profile-dropdown').classList.add('hidden');
+                });
+            });
+
+            generalTabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    selectTab(link.getAttribute('data-tab'));
+                });
+            });
+        }
+
+        // 3. COURSES GRID RENDERER
+        function renderCourses(searchTerm = '', filterStatus = 'all') {
+            const courses = getEnrolledCourses();
+            
+            // Filters
+            const filtered = courses.filter(course => {
+                const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                      course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
+                
+                let matchesStatus = true;
+                if (filterStatus === 'active') {
+                    matchesStatus = course.progress < 100;
+                } else if (filterStatus === 'completed') {
+                    matchesStatus = course.progress === 100;
+                }
+                
+                return matchesSearch && matchesStatus;
+            });
+
+            // Update stats indicators
+            updateStatsUI(courses);
+
+            // Populate Overview list (displays max 2 current active items)
+            const overviewContainer = document.getElementById('overview-courses-grid');
+            if (overviewContainer) {
+                overviewContainer.innerHTML = '';
+                const activeStudies = courses.filter(c => c.progress < 100).slice(0, 2);
+                
+                if (activeStudies.length === 0) {
+                    overviewContainer.innerHTML = `
+                        <div class="col-span-full bg-white border border-slate-100 p-8 text-center rounded-2xl">
+                            <span class="material-symbols-outlined text-[48px] text-slate-300">school</span>
+                            <p class="text-xs text-slate-400 mt-2">No active courses. Ready to enroll in new courses?</p>
+                            <a href="courses.html" class="text-primary font-bold text-xs mt-3 inline-block hover:underline">Explore Catalog</a>
+                        </div>
+                    `;
+                } else {
+                    activeStudies.forEach(course => {
+                        const card = createCourseCardHTML(course, 'overview');
+                        overviewContainer.appendChild(card);
+                    });
+                }
+            }
+
+            // Populate Main list (All enrolled catalog page grid)
+            const fullGridContainer = document.getElementById('my-courses-full-grid');
+            if (fullGridContainer) {
+                fullGridContainer.innerHTML = '';
+                if (filtered.length === 0) {
+                    fullGridContainer.innerHTML = `
+                        <div class="col-span-full bg-white border border-slate-200 p-12 text-center rounded-2xl">
+                            <span class="material-symbols-outlined text-[60px] text-slate-300">menu_book</span>
+                            <p class="text-sm font-bold text-slate-700 mt-3">No matching courses found</p>
+                            <p class="text-xs text-slate-400 mt-1">Try resetting filters or search query.</p>
+                            <a href="courses.html" class="text-primary font-bold text-xs mt-4 inline-block hover:underline">Browse Course Catalog</a>
+                        </div>
+                    `;
+                } else {
+                    filtered.forEach(course => {
+                        const card = createCourseCardHTML(course, 'full');
+                        fullGridContainer.appendChild(card);
+                    });
+                }
+            }
+
+            // Bind click triggers for resuming lessons
+            document.querySelectorAll('.resume-btn-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    simulateCourseProgress(id);
+                });
+            });
+        }
+
+        function createCourseCardHTML(course, type) {
+            const card = document.createElement('div');
+            card.className = "bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-300";
+            
+            // Category color coding
+            const catBadge = course.category || "General";
+            const badgeClass = catBadge.includes("Web") ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary";
+
+            card.innerHTML = `
+                <div class="h-32 bg-slate-100 relative overflow-hidden">
+                    <img src="${course.image}" class="w-full h-full object-cover error-img-fallback" alt="course image">
+                    <span class="absolute top-3 left-3 ${badgeClass} text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${catBadge}</span>
+                </div>
+                <div class="p-4 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug" title="${course.title}">${course.title}</h4>
+                        <p class="text-[10px] text-slate-400 mt-1">Instructor: ${course.instructor}</p>
+                    </div>
+
+                    <!-- Progress slider bar -->
+                    <div class="mt-4 pt-3 border-t border-slate-50">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-600 mb-1.5">
+                            <span>Progress</span>
+                            <span class="course-prog-value">${course.progress}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-primary h-1.5 rounded-full transition-all duration-500" style="width: ${course.progress}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Resume lesson CTA -->
+                    <div class="mt-4 flex gap-2">
+                        <button data-id="${course.id}" class="resume-btn-trigger flex-grow bg-slate-100 hover:bg-primary hover:text-white text-slate-600 font-bold text-xs py-2 rounded-xl transition-all flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm">${course.progress === 100 ? 'check_circle' : 'play_arrow'}</span>
+                            <span>${course.progress === 100 ? 'Completed' : 'Resume Lesson'}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // 4. STATS CALCULATOR AND DISPLAY INJECTOR
+        function updateStatsUI(courses) {
+            // Count badges
+            document.querySelectorAll('.courses-count-badge').forEach(badge => {
+                badge.textContent = courses.length;
+            });
+            const enrolledCount = document.getElementById('stat-enrolled-count');
+            if (enrolledCount) enrolledCount.textContent = courses.length;
+
+            // Average Progress
+            const avgProgress = document.getElementById('stat-avg-progress');
+            if (avgProgress && courses.length > 0) {
+                const total = courses.reduce((sum, c) => sum + c.progress, 0);
+                const avg = Math.round(total / courses.length);
+                avgProgress.textContent = `${avg}%`;
+            } else if (avgProgress) {
+                avgProgress.textContent = "0%";
+            }
+
+            // Certificates
+            const certsCount = document.getElementById('stat-certs-count');
+            if (certsCount) {
+                const count = courses.filter(c => c.progress === 100).length;
+                certsCount.textContent = count;
+            }
+        }
+
+        // 5. SIMULATED LEARNING & PROGRESS INCREMENTER
+        function simulateCourseProgress(courseId) {
+            try {
+                let courses = getEnrolledCourses();
+                let courseIndex = courses.findIndex(c => c.id === courseId);
+                
+                if (courseIndex > -1) {
+                    let course = courses[courseIndex];
+                    if (course.progress >= 100) {
+                        if (window.EduraCart && window.EduraCart.showToast) {
+                            window.EduraCart.showToast(`You have already completed "${course.title}"!`, "success");
+                        } else {
+                            alert("You have already completed this course!");
+                        }
+                        return;
+                    }
+                    
+                    // Increment progress by 10%
+                    course.progress = Math.min(course.progress + 10, 100);
+                    courses[courseIndex] = course;
+                    localStorage.setItem('enrolled_courses', JSON.stringify(courses));
+                    
+                    // Re-render UI
+                    renderCourses();
+
+                    if (course.progress === 100) {
+                        if (window.EduraCart && window.EduraCart.showToast) {
+                            window.EduraCart.showToast(`🎉 Congratulations! You have fully completed "${course.title}"!`, "success");
+                        } else {
+                            alert(`Congratulations! You have completed: ${course.title}`);
+                        }
+                    } else {
+                        if (window.EduraCart && window.EduraCart.showToast) {
+                            window.EduraCart.showToast(`Lesson completed! Progress: ${course.progress}%`, "primary");
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Progress simulation failed: ", err);
+            }
+        }
+
+        // 6. DROPDOWNS & NOTIFICATION SYSTEM
+        function initDropdowns() {
+            const profileBtn = document.getElementById('profile-dropdown-btn');
+            const profileMenu = document.getElementById('profile-dropdown');
+            const notiBtn = document.getElementById('noti-dropdown-btn');
+            const notiMenu = document.getElementById('noti-dropdown');
+
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileMenu.classList.toggle('hidden');
+                notiMenu.classList.add('hidden');
+            });
+
+            notiBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notiMenu.classList.toggle('hidden');
+                profileMenu.classList.add('hidden');
+            });
+
+            // Click outside closes them
+            document.addEventListener('click', () => {
+                profileMenu.classList.add('hidden');
+                notiMenu.classList.add('hidden');
+            });
+
+            // Prevent closing when clicking inside dropdown menu
+            profileMenu.addEventListener('click', (e) => e.stopPropagation());
+            notiMenu.addEventListener('click', (e) => e.stopPropagation());
+
+            // Clear Notifications trigger
+            document.querySelector('.noti-clear-btn').addEventListener('click', () => {
+                const list = document.getElementById('noti-list');
+                list.innerHTML = `
+                    <div class="text-center py-6 text-slate-300 flex flex-col items-center">
+                        <span class="material-symbols-outlined text-[32px] opacity-40">notifications_off</span>
+                        <p class="text-[10px] mt-1 font-bold">No new notifications</p>
+                    </div>
+                `;
+                document.querySelector('#noti-dropdown-btn span.bg-error').remove();
+            });
+
+            // Wire up searching
+            const searchInput = document.getElementById('dashboard-search-input');
+            searchInput.addEventListener('input', (e) => {
+                renderCourses(e.target.value, document.getElementById('courses-filter-select').value);
+            });
+
+            // Wire up status dropdown filter
+            const statusSelect = document.getElementById('courses-filter-select');
+            statusSelect.addEventListener('change', (e) => {
+                renderCourses(searchInput.value, e.target.value);
+            });
+
+            // Logout Action
+            document.getElementById('dashboard-logout-btn').addEventListener('click', () => {
+                if (window.EduraCart && window.EduraCart.showToast) {
+                    window.EduraCart.showToast("Logging you out...", "info");
+                }
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            });
+        }
+
+        // 7. COUNTDOWN TIMER SYSTEM
+        function runLiveTimer() {
+            // Set arbitrary deadline: 2 hours 45 mins 32 secs from now
+            let totalSeconds = 2 * 3600 + 45 * 60 + 32;
+
+            const hEl = document.getElementById('timer-hours');
+            const mEl = document.getElementById('timer-mins');
+            const sEl = document.getElementById('timer-secs');
+
+            const interval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(interval);
+                    if (hEl) hEl.textContent = '00';
+                    if (mEl) mEl.textContent = '00';
+                    if (sEl) sEl.textContent = '00';
+                    const timerText = document.querySelector('.animate-pulse');
+                    if (timerText) timerText.textContent = "IN PROGRESS NOW";
+                    return;
+                }
+
+                totalSeconds--;
+
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                if (hEl) hEl.textContent = hours.toString().padStart(2, '0');
+                if (mEl) mEl.textContent = minutes.toString().padStart(2, '0');
+                if (sEl) sEl.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+
+            // Join Room button trigger
+            const joinBtn = document.getElementById('join-live-btn');
+            if (joinBtn) {
+                joinBtn.addEventListener('click', () => {
+                    if (window.EduraCart && window.EduraCart.showToast) {
+                        window.EduraCart.showToast("Connecting to live lecture room... Please enable webcam/mic.", "success");
+                    } else {
+                        alert("Connecting to live room...");
+                    }
+                });
+            }
+
+            // Bind triggers on Live Classes page
+            document.querySelectorAll('.live-join-btn-trigger').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (window.EduraCart && window.EduraCart.showToast) {
+                        window.EduraCart.showToast("Opening Google Meet / Edura Classroom frame...", "success");
+                    } else {
+                        alert("Opening classroom framework...");
+                    }
+                });
+            });
+        }
+
+        // 8. MOBILE SIDEBAR DRAWER TOGGLER
+        function initMobileSidebar() {
+            const toggle = document.getElementById('mobile-sidebar-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-sidebar-overlay');
+
+            const open = () => {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            };
+
+            const close = () => {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            };
+
+            toggle.addEventListener('click', open);
+            overlay.addEventListener('click', close);
+        }
+
+        // 9. PROFILE / PREFERENCES FORM HANDLER
+        function initSettingsForm() {
+            const form = document.getElementById('settings-profile-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('settings-name').value.trim();
+                    const email = document.getElementById('settings-email').value.trim();
+                    
+                    if (!name || !email) {
+                        if (window.EduraCart && window.EduraCart.showToast) {
+                            window.EduraCart.showToast("Name and Email are required.", "error");
+                        }
+                        return;
+                    }
+                    
+                    // Save to local storage
+                    const profile = { name, email };
+                    localStorage.setItem('student_profile', JSON.stringify(profile));
+                    
+                    // Update user display parameters
+                    updateProfileUI(name, email);
+
+                    if (window.EduraCart && window.EduraCart.showToast) {
+                        window.EduraCart.showToast("Profile settings saved successfully!", "success");
+                    } else {
+                        alert("Profile settings saved!");
+                    }
+                });
+            }
+        }
+
+        function updateProfileUI(name, email) {
+            document.querySelectorAll('.sidebar-user-name').forEach(el => {
+                el.textContent = name;
+            });
+            document.querySelectorAll('.student-email-text').forEach(el => {
+                el.textContent = email;
+            });
+            
+            // Set initials avatar
+            const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            document.querySelectorAll('.sidebar-user-name').forEach(el => {
+                const imgWrap = el.closest('div').previousElementSibling;
+                if (imgWrap && imgWrap.classList.contains('w-12') && imgWrap.classList.contains('h-12')) {
+                    imgWrap.textContent = initials;
+                }
+            });
+        }
+
+        // 10. IMAGE LOADING FALLBACKS
+        function handleImageFallbacks() {
+            document.querySelectorAll('img.error-img-fallback').forEach(img => {
+                img.addEventListener('error', () => {
+                    img.src = "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg";
+                });
+            });
+        }
+    </script>
+</body>
+</html>

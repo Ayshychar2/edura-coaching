@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact &amp; Enrollment - Edura Coaching</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004ac6",
+                        "surface": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed": "#00174b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-container": "#eff0f2",
+                        "secondary": "#712ae2",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "tertiary-fixed": "#e1e2e4",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "inverse-surface": "#263143",
+                        "on-secondary-fixed": "#25005a",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c5c6c8",
+                        "secondary-fixed": "#eaddff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "inverse-on-surface": "#ecf1ff",
+                        "outline": "#737686",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#111c2d",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary-container": "#6b6d6f",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#8a4cfc",
+                        "surface-container": "#e7eeff",
+                        "surface-tint": "#0053db",
+                        "surface-variant": "#d8e3fb",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-surface": "#111c2d",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#525557",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "section-padding": "80px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["30px", { "lineHeight": "38px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-surface'); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .pattern-bg {
+            background-image: radial-gradient(theme('colors.primary-fixed') 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 4px theme('colors.surface-container-high');
+        }
+    </style>
+<script src="app.js" defer></script>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface fixed top-0 w-full z-50 border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-margin-mobile md:px-section-padding py-4 max-w-container-max mx-auto left-0 right-0">
+<div class="flex items-center gap-8">
+<a class="text-headline-md font-headline-md font-extrabold text-primary dark:text-inverse-primary flex items-center gap-2" href="index.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+                Edura Coaching
+            </a>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 rounded-lg px-3 py-2" href="index.html">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 rounded-lg px-3 py-2" href="courses.html">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 rounded-lg px-3 py-2" href="instructors.html">Teachers</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 rounded-lg px-3 py-2" href="platform.html">Dashboard</a>
+<a class="font-label-md text-label-md text-primary dark:text-inverse-primary border-b-2 border-primary dark:border-inverse-primary pb-1 px-3 py-2" href="contact.html">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant">
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-48 outline-none" placeholder="Search For Course..." type="text">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-error w-2 h-2 rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">favorite</span>
+<span class="absolute top-1 right-1 bg-error w-2 h-2 rounded-full"></span>
+</button>
+</div>
+<div class="hidden md:flex gap-3">
+<button class="font-label-md text-label-md text-primary border border-primary px-4 py-2 rounded-lg hover:bg-surface-container-high transition-colors">Login</button>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors shadow-sm scale-95 active:scale-90 transition-transform">Join Now</button>
+</div>
+<button class="md:hidden p-2 text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[100px]">
+<!-- Hero Section -->
+<section class="relative py-section-padding px-margin-mobile md:px-section-padding overflow-hidden pattern-bg">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-low/50 to-background pointer-events-none"></div>
+<div class="max-w-container-max mx-auto relative z-10 flex flex-col md:flex-row items-center gap-gutter">
+<div class="w-full md:w-1/2 flex flex-col gap-stack-lg">
+<div class="inline-flex items-center gap-2 bg-secondary-fixed/50 text-on-secondary-fixed px-4 py-2 rounded-full w-max">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Get in Touch</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">
+                        Let's Start Your <br>
+<span class="text-primary">Educational Journey</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Whether you have a question about our courses, need help with enrollment, or want to discuss a customized learning path, our team is here to assist you every step of the way.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<a class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-primary/90 transition-all shadow-[0_4px_20px_rgba(30,41,59,0.05)] hover:-translate-y-1" href="#contact-form">
+                            Send a Message
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-secondary text-on-secondary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-secondary/90 transition-all shadow-[0_4px_20px_rgba(30,41,59,0.05)] hover:-translate-y-1" href="#enroll">
+                            Apply Now
+                            <span class="material-symbols-outlined">school</span>
+</a>
+</div>
+</div>
+<div class="w-full md:w-1/2 relative">
+<div class="absolute -inset-4 bg-primary-fixed/30 rounded-3xl blur-2xl z-0"></div>
+<div class="relative z-10 rounded-3xl overflow-hidden shadow-xl border border-outline-variant/30 h-[400px]">
+<img alt="Students collaborating happily in a bright, modern learning environment. The setting is a contemporary educational space with ample natural light, soft wood textures, and professional yet relaxed atmosphere. High-quality photography capturing a moment of genuine engagement and positive academic interaction, fitting for a premium coaching institute." class="w-full h-full object-cover" data-alt="Students collaborating happily in a bright, modern learning environment. The setting is a contemporary educational space with ample natural light, soft wood textures, and professional yet relaxed atmosphere. High-quality photography capturing a moment of genuine engagement and positive academic interaction, fitting for a premium coaching institute." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvc4Vyhc_-rk-N4DIcfV5xVxdOWqtNxjY4xbDs_ZejZxwhreAHC-H8XmTOh9ci4RkV-hLqdAbCBh3Mi6soNdVCJoDhWRqjgf7bpMRYC3ZlKIN42plUpIhkxkg3tJtdfbpqZRVfaK7UNFg7Jd088xm9dKFksMDzvt06iP8r37oHnAHwdgsWgH5MFbs2sKZ-pqoxpqv26YmCPcQJWnLiyUYqc-uY-tcrRhvuwXWdJF2rv6Js2eXPTTPJDac8x1jkgiQyKOxSbMl9wxbM">
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl flex items-center gap-4 z-20 shadow-lg">
+<div class="bg-primary-container text-on-primary-container p-3 rounded-xl">
+<span class="material-symbols-outlined text-[28px]">forum</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">24/7</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Student Support</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Contact & Info -->
+<section class="py-section-padding px-margin-mobile md:px-section-padding max-w-container-max mx-auto" id="contact-form">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Contact Form (Spans 7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-3xl p-8 md:p-12 border border-outline-variant/50 shadow-[0_4px_20px_rgba(30,41,59,0.05)]">
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Send us a message</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Fill out the form below and our admissions team will get back to you within 24 hours.</p>
+</div>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-tertiary" for="firstName">First Name</label>
+<input class="px-4 py-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:ring-0 input-glow transition-all outline-none font-body-md text-on-surface placeholder:text-outline" id="firstName" placeholder="John" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-tertiary" for="lastName">Last Name</label>
+<input class="px-4 py-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:ring-0 input-glow transition-all outline-none font-body-md text-on-surface placeholder:text-outline" id="lastName" placeholder="Doe" type="text">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-tertiary" for="email">Email Address</label>
+<input class="px-4 py-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:ring-0 input-glow transition-all outline-none font-body-md text-on-surface placeholder:text-outline" id="email" placeholder="john.doe@example.com" type="email">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-tertiary" for="subject">Subject</label>
+<select class="px-4 py-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:ring-0 input-glow transition-all outline-none font-body-md text-on-surface appearance-none" id="subject">
+<option>General Inquiry</option>
+<option>Course Enrollment</option>
+<option>Technical Support</option>
+<option>Billing Question</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-tertiary" for="message">Message</label>
+<textarea class="px-4 py-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:ring-0 input-glow transition-all outline-none font-body-md text-on-surface placeholder:text-outline resize-none" id="message" placeholder="How can we help you today?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-xl hover:bg-primary/90 transition-all shadow-sm mt-4 flex justify-center items-center gap-2" type="submit">
+                            Send Message
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</form>
+</div>
+<!-- Info Cards (Spans 5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Direct Contact Card -->
+<div class="bg-surface-container-low rounded-3xl p-8 border border-outline-variant/30 flex-grow flex flex-col justify-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-surface-container-highest p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-tertiary mb-1">Phone</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">+1 (555) 123-4567</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">+1 (555) 987-6543</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-surface-container-highest p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-tertiary mb-1">Email</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">info@eduracoaching.com</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">admissions@eduracoaching.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-surface-container-highest p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-tertiary mb-1">Headquarters</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">123 Education Lane,<br>Innovation District,<br>Tech City, TC 10020</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Card -->
+<div class="rounded-3xl overflow-hidden h-48 border border-outline-variant/30 relative group">
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+<img alt="A clean, abstract representation of a modern city map, focusing on streets and major routes. The image should have a light mode aesthetic with soft blues and grays, fitting a corporate educational brand's contact page. It should look professional, easy to read, and subtly stylised without being overly complex." class="w-full h-full object-cover" data-alt="A clean, abstract representation of a modern city map, focusing on streets and major routes. The image should have a light mode aesthetic with soft blues and grays, fitting a corporate educational brand's contact page. It should look professional, easy to read, and subtly stylised without being overly complex." data-location="Tech City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN4tKpvlqg5Z__i8eFP2pv1PNoxC84WQDBwHtCfZtDoFDplLfCioOYdcDy3yN-agHtsGBi8kLV3u0FOuzG6MCyR-72bCl1PD-Iz98qZ57g3Ah_yjGmpXEh8E46xcC9mUJyJDOxtPThMe2OLYugaA--wf60OdCKso9lLWoHLHQdG7HthvECLRnumjFpFwKKghiilvip8051pqoNUa231QwSm3pK0EbNZ4SLqRG7aGoh86MkEECR7PIZCQz-4qYznbT2Zf7G7aIC2pPe">
+<a class="absolute bottom-4 right-4 z-20 bg-surface-container-lowest font-label-sm text-label-sm px-4 py-2 rounded-lg shadow-sm border border-outline-variant hover:bg-surface-bright transition-colors flex items-center gap-2 text-on-surface" href="#">
+                            Get Directions
+                            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Enrollment Section (Asymmetric Layout) -->
+<section class="py-section-padding px-margin-mobile md:px-section-padding bg-surface-container-lowest border-t border-outline-variant/20" id="enroll">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-section-padding">
+<div class="w-full md:w-5/12 relative">
+<div class="aspect-[4/5] rounded-[2rem] overflow-hidden">
+<img alt="A focused student working on a laptop in a well-lit, modern study environment. The lighting is soft and natural, creating a calm, productive atmosphere. The scene emphasizes concentration and the high-quality learning experience provided by a modern online education platform." class="w-full h-full object-cover" data-alt="A focused student working on a laptop in a well-lit, modern study environment. The lighting is soft and natural, creating a calm, productive atmosphere. The scene emphasizes concentration and the high-quality learning experience provided by a modern online education platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZW1B3uD592RoIFeeYWP9iPr_WUusOjFjxxLsmviPFio7NUoWDsPQ1kdIS1XNZ0xINim9l29demoiA05pZ3lF8BDEEi8vOjiFP2Iyg4u8WSidOpe6JyekG9UzadSwcTI9uwB-WDaCWkwFxh6jIA50_2n31vusV38KgbDmCQ99kLCebifwkhTFleVGr3uBkAjciyMNuI-OKFwrUpfc-IZ9Aeeby3AY0pYIi_YceL9LgfEsgbTfp2NHjh7cD7RoqcTQUnmEF2f0wRYqN">
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-8 -bottom-8 w-48 h-48 bg-secondary-fixed/40 rounded-full blur-3xl -z-10"></div>
+</div>
+<div class="w-full md:w-7/12 flex flex-col gap-stack-lg">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">Ready to <span class="text-secondary">Enroll?</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                            Join over 16,500+ active students achieving their goals. Our streamlined enrollment process gets you into the classroom faster.
+                        </p>
+</div>
+<div class="flex flex-col gap-6 mt-4">
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container text-on-secondary-container w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Choose Your Course</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Browse our extensive catalog of industry-aligned programs.</p>
+</div>
+</div>
+<div class="w-px h-8 bg-outline-variant/50 ml-5 -my-2"></div>
+<div class="flex items-start gap-4">
+<div class="bg-surface-variant text-on-surface-variant w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Submit Application</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Fill out a brief profile to help us tailor your experience.</p>
+</div>
+</div>
+<div class="w-px h-8 bg-outline-variant/50 ml-5 -my-2"></div>
+<div class="flex items-start gap-4">
+<div class="bg-surface-variant text-on-surface-variant w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Start Learning</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get instant access to materials and join your first live session.</p>
+</div>
+</div>
+</div>
+<div class="mt-6">
+<button class="bg-secondary text-on-secondary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-secondary/90 transition-all shadow-[0_4px_20px_rgba(30,41,59,0.05)] hover:-translate-y-1 inline-flex items-center gap-2">
+                            Start Application
+                            <span class="material-symbols-outlined">how_to_reg</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-on-background w-full py-stack-lg border-t border-on-surface-variant/20 mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-section-padding max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<a class="text-headline-sm font-headline-sm text-surface-container-lowest flex items-center gap-2" href="index.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+                    Edura
+                </a>
+<p class="font-body-md text-body-md text-surface-dim mt-2">
+                    Empowering minds through accessible, high-quality online education and coaching.
+                </p>
+</div>
+<div class="col-span-1 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8 md:justify-items-end">
+<div class="flex flex-col gap-3">
+<h5 class="font-label-lg text-surface-bright font-bold mb-2">Legal</h5>
+<a class="font-label-sm text-label-sm text-surface-dim hover:text-white hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-surface-dim hover:text-white hover:underline transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label-lg text-surface-bright font-bold mb-2">Explore</h5>
+<a class="font-label-sm text-label-sm text-surface-dim hover:text-white hover:underline transition-all" href="#">Sitemap</a>
+<a class="font-label-sm text-label-sm text-surface-dim hover:text-white hover:underline transition-all" href="#">Affiliate Program</a>
+</div>
+<div class="flex flex-col gap-3 col-span-2 md:col-span-1">
+<h5 class="font-label-lg text-surface-bright font-bold mb-2">Support</h5>
+<a class="font-label-sm text-label-sm text-surface-dim hover:text-white hover:underline transition-all" href="#">FAQ</a>
+</div>
+</div>
+<div class="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-on-surface-variant/20 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-primary-fixed-dim">
+                    © 2024 Edura Coaching Institute. All rights reserved.
+                </p>
+<div class="flex gap-4">
+<a class="text-surface-dim hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. URL search parameter parser to pre-fill subject and message
+    const urlParams = new URLSearchParams(window.location.search);
+    const teacher = urlParams.get('teacher');
+    const inquiry = urlParams.get('inquiry');
+    
+    const subjectSelect = document.getElementById('subject');
+    const messageTextarea = document.getElementById('message');
+    
+    if (teacher) {
+        if (subjectSelect) {
+            subjectSelect.value = 'General Inquiry';
+        }
+        if (messageTextarea) {
+            messageTextarea.value = `Hello, I would like to schedule a consultation with instructor ${decodeURIComponent(teacher)}. Please let me know their availability.`;
+        }
+    } else if (inquiry === 'faculty') {
+        if (messageTextarea) {
+            messageTextarea.value = "Hello, I have a question regarding the faculty or enrollment requirements.";
+        }
+    }
+
+    // 2. Form validation & Toast message
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            
+            if (!firstName || !lastName || !email || !message) {
+                if (window.EduraCart && window.EduraCart.showToast) {
+                    window.EduraCart.showToast("Please fill in all required fields.", "error");
+                } else {
+                    alert("Please fill in all required fields.");
+                }
+                return;
+            }
+            
+            // Email format check
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                if (window.EduraCart && window.EduraCart.showToast) {
+                    window.EduraCart.showToast("Please enter a valid email address.", "error");
+                } else {
+                    alert("Please enter a valid email address.");
+                }
+                return;
+            }
+            
+            // Successful submit
+            if (window.EduraCart && window.EduraCart.showToast) {
+                window.EduraCart.showToast("Message sent successfully! We will contact you soon.", "success");
+            } else {
+                alert("Message sent successfully!");
+            }
+            
+            // Reset form
+            form.reset();
+        });
+    }
+
+    // Wire up "Start Application" button to open register modal
+    const startAppBtns = document.querySelectorAll('button');
+    startAppBtns.forEach(btn => {
+        if (btn.textContent.includes('Start Application')) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Find and click the Join Now button in the page header to open auth modal
+                const joinBtn = document.querySelector('button.bg-primary.text-on-primary, button.bg-primary.text-white');
+                if (joinBtn) {
+                    joinBtn.click();
+                } else {
+                    // Fallback to triggering via click on any element containing Join Now
+                    document.querySelectorAll('button, a').forEach(el => {
+                        if (el.textContent.trim().toLowerCase() === 'join now') {
+                            el.click();
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+</script>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

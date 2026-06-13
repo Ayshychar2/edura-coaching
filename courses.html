@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Catalog - Edura Coaching</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#004ac6",
+                      "surface": "#f9f9ff",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-fixed": "#00174b",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-tertiary-container": "#eff0f2",
+                      "secondary": "#712ae2",
+                      "surface-container-high": "#dee8ff",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "tertiary-fixed": "#e1e2e4",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "inverse-surface": "#263143",
+                      "on-secondary-fixed": "#25005a",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#cfdaf2",
+                      "surface-container-highest": "#d8e3fb",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#c5c6c8",
+                      "secondary-fixed": "#eaddff",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c3c6d7",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#2563eb",
+                      "inverse-on-surface": "#ecf1ff",
+                      "outline": "#737686",
+                      "on-surface-variant": "#434655",
+                      "primary-fixed": "#dbe1ff",
+                      "inverse-primary": "#b4c5ff",
+                      "on-primary": "#ffffff",
+                      "on-background": "#111c2d",
+                      "on-primary-container": "#eeefff",
+                      "surface-container-low": "#f0f3ff",
+                      "tertiary-container": "#6b6d6f",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#8a4cfc",
+                      "surface-container": "#e7eeff",
+                      "surface-tint": "#0053db",
+                      "surface-variant": "#d8e3fb",
+                      "on-secondary-container": "#fffbff",
+                      "on-tertiary-fixed": "#191c1e",
+                      "on-surface": "#111c2d",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#525557",
+                      "background": "#f9f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-padding": "80px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+<script src="app.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant shadow-sm w-full z-50">
+<div class="flex justify-between items-center px-margin-mobile md:px-section-padding py-4 max-w-container-max mx-auto">
+<a class="flex items-center gap-2" href="index.html">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-headline-md font-headline-md font-extrabold text-primary">Edura Coaching</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="index.html">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="courses.html">Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="instructors.html">Teachers</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="platform.html">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="contact.html">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative text-on-surface-variant">
+<input class="bg-surface-container-low border border-outline-variant rounded-full py-2 pl-4 pr-10 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm w-48" placeholder="Search For Course..." type="text">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all"><span class="material-symbols-outlined">favorite</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all"><span class="material-symbols-outlined">shopping_cart</span></button>
+</div>
+<a class="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Login</a>
+<a class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm" href="#">Join Now</a>
+<button class="md:hidden text-on-surface-variant p-2"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-8 pb-section-padding px-margin-mobile md:px-section-padding max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-on-background mb-stack-sm">Explore Our Courses</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover top-rated courses to advance your career. From UI/UX design to full-stack development, we have the right program for you.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Sidebar Filter -->
+<aside class="w-full lg:w-1/4 flex-shrink-0">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-sm sticky top-24">
+<div class="flex justify-between items-center mb-stack-md pb-stack-sm border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Filters</h3>
+<button id="btn-clear-filters" class="text-primary font-label-sm text-label-sm hover:underline">Clear All</button>
+</div>
+<!-- Category Filter -->
+<div class="mb-stack-md">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase tracking-wider">Category</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-category rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-category="UI/UX Design">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">UI/UX Design</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-category rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-category="Web Development" checked>
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Web Development</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-category rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-category="Graphic Design">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Graphic Design</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-category rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-category="Data Science">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Data Science</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-category rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-category="Business">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Business</span>
+</label>
+</div>
+</div>
+<!-- Level Filter -->
+<div class="mb-stack-md">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase tracking-wider">Level</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-level rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-level="Beginner">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Beginner</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-level rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-level="Intermediate">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Intermediate</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-level rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface" type="checkbox" data-level="Advanced">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Advanced</span>
+</label>
+</div>
+</div>
+<!-- Price Filter -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase tracking-wider">Price</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-price border-outline-variant text-primary focus:ring-primary/20 bg-surface" name="price" type="radio" value="all">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">All Prices</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-price border-outline-variant text-primary focus:ring-primary/20 bg-surface" name="price" type="radio" value="free">
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Free</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="filter-price border-outline-variant text-primary focus:ring-primary/20 bg-surface" name="price" type="radio" value="paid" checked>
+<span class="font-body-md text-body-md text-on-background group-hover:text-primary transition-colors">Paid</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Course Grid -->
+<<div class="w-full lg:w-3/4">
+<!-- Active Filters & Sort -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-stack-md gap-4">
+<div class="flex flex-wrap gap-2 items-center" id="filter-indicators-row">
+<span class="results-count-msg font-body-md text-body-md text-on-surface-variant mr-2">Showing 0 results</span>
+<div id="active-filters-container" class="flex flex-wrap gap-2 items-center">
+    <!-- Active filters pills will be rendered here -->
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface-variant">Sort by:</span>
+<select id="sort-select" class="bg-surface-container-lowest border border-outline-variant rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 font-body-md text-body-md text-on-background cursor-pointer">
+<option value="popular">Most Popular</option>
+<option value="newest">Newest</option>
+<option value="rating">Highest Rated</option>
+<option value="price-asc">Price: Low to High</option>
+<option value="price-desc">Price: High to Low</option>
+</select>
+</div>
+</div>
+<!-- Dynamic Grid -->
+<div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter min-h-[400px]">
+    <!-- Course cards injected by JavaScript -->
+</div>
+<!-- Pagination -->
+<div id="courses-pagination" class="mt-stack-lg flex justify-center gap-2">
+    <!-- Handled by JavaScript if multiple pages exist -->
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-on-background w-full py-stack-lg border-t border-on-surface-variant/20 mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-section-padding max-w-container-max mx-auto">
+<div class="col-span-1">
+<div class="text-headline-sm font-headline-sm text-surface-container-lowest mb-4">Edura Coaching</div>
+<p class="font-body-md text-body-md text-surface-dim mb-4">Empowering students and professionals to reach their highest potential through quality education.</p>
+<div class="text-primary-fixed-dim font-label-sm text-label-sm">© 2024 Edura Coaching Institute. All rights reserved.</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-surface-bright mb-4">Quick Links</h4>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-surface-dim hover:text-white hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-surface-dim hover:text-white hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-surface-dim hover:text-white hover:underline transition-all" href="#">Sitemap</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-surface-bright mb-4">More</h4>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-surface-dim hover:text-white hover:underline transition-all" href="#">Affiliate Program</a>
+<a class="font-body-md text-body-md text-surface-dim hover:text-white hover:underline transition-all" href="#">FAQ</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-surface-bright mb-4">Stay Updated</h4>
+<div class="flex">
+<input class="bg-surface/10 border border-on-surface-variant text-surface-container-lowest rounded-l-lg py-2 px-3 focus:outline-none focus:border-primary-fixed-dim w-full text-sm" placeholder="Enter your email" type="email">
+<button class="bg-primary hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors text-white px-4 rounded-r-lg font-label-sm text-label-sm">Subscribe</button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Courses Dataset
+    const coursesData = [
+        {
+            id: 1,
+            title: "Learn Figma - UI/UX Design Essential Training",
+            category: "UI/UX Design",
+            level: "Beginner",
+            price: 0.00,
+            lessons: "8 Lessons",
+            students: "60+ Students",
+            duration: "03 WEEKS",
+            rating: 4.7,
+            instructor: "Kevin Perry",
+            image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg",
+            badge: "UI/UX",
+            bestseller: false,
+            reviewsCount: 34,
+            dateAdded: "2024-05-10"
+        },
+        {
+            id: 2,
+            title: "Complete Full-Stack Web Development Bootcamp",
+            category: "Web Development",
+            level: "Intermediate",
+            price: 89.99,
+            lessons: "42 Lessons",
+            students: "60+ Students",
+            duration: "60 Hours",
+            rating: 4.8,
+            instructor: "David Chen",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDbxv87zrQ9qZAvYg_VxYvqb8AmaagLZVjBKh0403WqtHnf1r6jOewePaPrm4K7uO5n-lsxZ5n2l7efXnk2VaJeHNA7vplkeyx3YOAtuxsaZmRhxkh0c40ETw7uKXi5lYXvJyPJZHbGAIHodwLM35N5MzHjbxBQ08ksgHp5F-Hm-0_7kFAQRhvumWv7QQWVnIodB6FNo8fAheKXLe0q1MKbienTBlXvPscTSuFFSv9ZOyQ8aGZLmjq50q25h6FVrNVc3xb8032C_0P9",
+            badge: "Web Dev",
+            bestseller: true,
+            reviewsCount: 1240,
+            dateAdded: "2024-06-01"
+        },
+        {
+            id: 3,
+            title: "Advanced Figma Prototypes & Animations",
+            category: "UI/UX Design",
+            level: "Advanced",
+            price: 59.99,
+            lessons: "24 Lessons",
+            students: "80+ Students",
+            duration: "18 Hours",
+            rating: 4.2,
+            instructor: "Sarah Jenkins",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7w2WNuDktBCQswn1sKz1_lcYksXLW319GISmViCCRnyanPVHaTU5Q2prxUEybt6p9cIKDXeFHtg_a2WUZ0Oo2n1uYeLI6wD3xNubNsIe0eI85C6FOEEIj5DGg5k42Ny8Vv15txq0mmzLXYPUIuLELsnLAwuQsTFk8qrGgJ69Z-WU_rEwh0lD9tdDLLf73UrPNsa-v7BMtczYhAB2RxlRO6mGNOj0cEe9_ONUKMPm4Z-8KdXElo5tmbO9lnoheQcXFT8Z4nqAaVLNQ",
+            badge: "UI/UX",
+            bestseller: false,
+            reviewsCount: 180,
+            dateAdded: "2024-04-15"
+        },
+        {
+            id: 4,
+            title: "Python for Data Science and Machine Learning",
+            category: "Data Science",
+            level: "Intermediate",
+            price: 119.99,
+            lessons: "56 Lessons",
+            students: "150+ Students",
+            duration: "45 Hours",
+            rating: 5.0,
+            instructor: "Marcus Reed",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCqyKOG0NopQ4wtuhs-6YcTM5phjlDR9SbqW1xyfjHmUodTr-1CX2l-yMJRRiz5S_8Xiy1gHaFBmw_7MH1GQItsGadx0Zejk9ADKHDCLYtFlYpjRE_KL5JlQuN2u2KAPd1rxxEUbcnd2TQvOxbvJNVYqO4h4u9SlRzTNWH6PCvqUqivMpJtdgSKQ-A3Oft5FU4SuniF4L-e1-CiFEowUObC5LhDgGO_Wo44ye9O-4lEYmcpTWQ6ReffTnh25srcG0taHJ22h7_ACD5H",
+            badge: "Data Sci",
+            bestseller: false,
+            reviewsCount: 310,
+            dateAdded: "2024-05-20"
+        },
+        {
+            id: 5,
+            title: "React 18: Build Scalable Web Apps",
+            category: "Web Development",
+            level: "Intermediate",
+            price: 74.99,
+            lessons: "32 Lessons",
+            students: "90+ Students",
+            duration: "28 Hours",
+            rating: 4.0,
+            instructor: "Alicia Jones",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAql_nMy7vaFrPeGTzNy1zrE4m3YJzH_O3b8hYsRhesaetUAznY2IanNP3QecMW4s7V1L3cGF3_cdghDlMmaQKTxWTWS4XsIh9JAl4nsYz1as8aOP65ArLrZd9BWYVwMuDDFqiEuWG9Lu8lQsr_LB4R6ORsPzCfff0nIdK_mus8JHwhHvl3qzWpO56D8_g4jlpyPRaq8W0jNXKxJ25tKbX87JJVsJHbuoUnOLXHqLDqZQPD038VX8I316m3OKiq0gc7cgYyjxzbi4VM",
+            badge: "Web Dev",
+            bestseller: false,
+            reviewsCount: 12,
+            dateAdded: "2024-06-10",
+            isNew: true
+        },
+        {
+            id: 6,
+            title: "IT Statistics Data Science and Business Analysis",
+            category: "Data Science",
+            level: "Advanced",
+            price: 0.00,
+            lessons: "15 Lessons",
+            students: "120+ Students",
+            duration: "04 WEEKS",
+            rating: 5.0,
+            instructor: "Kevin Perry",
+            image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg",
+            badge: "Data Sci",
+            bestseller: false,
+            reviewsCount: 42,
+            dateAdded: "2024-03-12"
+        },
+        {
+            id: 7,
+            title: "Graphic Design Fundamentals for Marketers",
+            category: "Graphic Design",
+            level: "Beginner",
+            price: 49.99,
+            lessons: "18 Lessons",
+            students: "45+ Students",
+            duration: "12 Hours",
+            rating: 4.5,
+            instructor: "Sarah Jenkins",
+            image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg",
+            badge: "Graphic",
+            bestseller: false,
+            reviewsCount: 19,
+            dateAdded: "2024-05-18"
+        },
+        {
+            id: 8,
+            title: "Digital Marketing Blueprint & SEO Mastery",
+            category: "Business",
+            level: "Beginner",
+            price: 39.99,
+            lessons: "25 Lessons",
+            students: "310+ Students",
+            duration: "20 Hours",
+            rating: 4.6,
+            instructor: "David Kim",
+            image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg",
+            badge: "Business",
+            bestseller: true,
+            reviewsCount: 92,
+            dateAdded: "2024-05-25"
+        }
+    ];
+
+    // 2. Selectors
+    const grid = document.getElementById('courses-grid');
+    const searchInput = document.querySelector('input[placeholder="Search For Course..."]');
+    const sortSelect = document.getElementById('sort-select');
+    const categoryChecks = document.querySelectorAll('.filter-category');
+    const levelChecks = document.querySelectorAll('.filter-level');
+    const priceRadios = document.querySelectorAll('.filter-price');
+    const clearBtn = document.getElementById('btn-clear-filters');
+    const resultsMsg = document.querySelector('.results-count-msg');
+    const activeFiltersContainer = document.getElementById('active-filters-container');
+
+    // 3. Render function
+    function render(courses) {
+        grid.innerHTML = '';
+        resultsMsg.textContent = `Showing ${courses.length} of ${coursesData.length} results`;
+        
+        if (courses.length === 0) {
+            grid.innerHTML = `
+                <div class="col-span-full flex flex-col items-center justify-center py-16 text-center text-on-surface-variant space-y-4">
+                    <span class="material-symbols-outlined text-[64px] opacity-30">menu_book</span>
+                    <p class="font-headline-sm text-headline-sm">No courses match your filter settings.</p>
+                    <button id="btn-reset-search" class="text-primary font-label-md hover:underline">Clear Search & Filters</button>
+                </div>
+            `;
+            const resetBtn = document.getElementById('btn-reset-search');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', clearAllFilters);
+            }
+            return;
+        }
+
+        courses.forEach(course => {
+            const isFree = course.price === 0;
+            const priceText = isFree ? 'FREE' : `$${course.price.toFixed(2)}`;
+            
+            const card = document.createElement('div');
+            card.className = 'bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-[0px_4px_20px_rgba(30,41,59,0.05)] transition-all duration-300';
+            
+            card.innerHTML = `
+                <div class="relative h-48 overflow-hidden">
+                    <img alt="${course.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${course.image}">
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm">${course.badge}</span>
+                        ${course.bestseller ? '<span class="bg-secondary/90 backdrop-blur-sm text-white px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm">Bestseller</span>' : ''}
+                        ${course.isNew ? '<span class="bg-primary/95 text-white px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm">New</span>' : ''}
+                    </div>
+                </div>
+                <div class="p-stack-md flex-grow flex flex-col">
+                    <div class="flex items-center gap-1 text-secondary mb-2">
+                        ${renderStars(course.rating)}
+                        <span class="text-on-surface-variant font-label-sm text-label-sm ml-1">(${course.rating.toFixed(1)})</span>
+                    </div>
+                    <h3 class="font-headline-sm text-[20px] leading-tight text-on-background mb-2 line-clamp-2 group-hover:text-primary transition-colors">${course.title}</h3>
+                    <div class="flex items-center gap-4 text-on-surface-variant font-label-md text-label-md mb-4 mt-auto">
+                        <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">menu_book</span> ${course.lessons}</div>
+                        <div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> ${course.duration}</div>
+                    </div>
+                    <div class="border-t border-outline-variant pt-4 flex justify-between items-center mt-auto">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+                                ${course.instructor.charAt(0)}
+                            </div>
+                            <span class="font-label-md text-label-md text-on-background">${course.instructor}</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-headline-sm text-[20px] text-primary">${priceText}</span>
+                        </div>
+                    </div>
+                    <!-- Hover Add to Cart Button -->
+                    <button class="add-to-cart-btn w-full mt-4 bg-secondary text-white font-label-md py-3 rounded-lg hover:bg-secondary-container transition-colors shadow-sm flex items-center justify-center gap-2" data-id="${course.id}">
+                        <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                        Add to Cart
+                    </button>
+                </div>
+            `;
+            
+            grid.appendChild(card);
+        });
+
+        // Add Cart Event Listeners
+        grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                const course = coursesData.find(c => c.id === id);
+                if (course) {
+                    window.EduraCart.add(course);
+                }
+            });
+        });
+    }
+
+    function renderStars(rating) {
+        let starsHtml = '';
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        
+        for (let i = 0; i < 5; i++) {
+            if (i < fullStars) {
+                starsHtml += '<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: \'FILL\' 1;">star</span>';
+            } else if (i === fullStars && halfStar) {
+                starsHtml += '<span class="material-symbols-outlined text-[18px]">star_half</span>';
+            } else {
+                starsHtml += '<span class="material-symbols-outlined text-[18px]">star_border</span>';
+            }
+        }
+        return starsHtml;
+    }
+
+    // 4. Filtering Logic
+    function applyFilters() {
+        // Search
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        // Checked Categories
+        const checkedCategories = [];
+        categoryChecks.forEach(check => {
+            if (check.checked) checkedCategories.push(check.getAttribute('data-category'));
+        });
+        
+        // Checked Levels
+        const checkedLevels = [];
+        levelChecks.forEach(check => {
+            if (check.checked) checkedLevels.push(check.getAttribute('data-level'));
+        });
+        
+        // Price Selection
+        let priceVal = 'all';
+        priceRadios.forEach(rad => {
+            if (rad.checked) priceVal = rad.value;
+        });
+
+        // Filter Array
+        let filtered = coursesData.filter(course => {
+            // Search Match
+            const matchesSearch = query === '' || 
+                                  course.title.toLowerCase().includes(query) || 
+                                  course.instructor.toLowerCase().includes(query) ||
+                                  course.category.toLowerCase().includes(query);
+            
+            // Category Match
+            const matchesCategory = checkedCategories.length === 0 || checkedCategories.includes(course.category);
+            
+            // Level Match
+            const matchesLevel = checkedLevels.length === 0 || checkedLevels.includes(course.level);
+            
+            // Price Match
+            let matchesPrice = true;
+            if (priceVal === 'free') {
+                matchesPrice = course.price === 0;
+            } else if (priceVal === 'paid') {
+                matchesPrice = course.price > 0;
+            }
+
+            return matchesSearch && matchesCategory && matchesLevel && matchesPrice;
+        });
+
+        // Apply Sorting
+        const sortBy = sortSelect.value;
+        if (sortBy === 'popular') {
+            filtered.sort((a, b) => b.reviewsCount - a.reviewsCount);
+        } else if (sortBy === 'newest') {
+            filtered.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+        } else if (sortBy === 'rating') {
+            filtered.sort((a, b) => b.rating - a.rating);
+        } else if (sortBy === 'price-asc') {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (sortBy === 'price-desc') {
+            filtered.sort((a, b) => b.price - a.price);
+        }
+
+        render(filtered);
+        renderActiveFilters(checkedCategories, checkedLevels, priceVal);
+    }
+
+    // Render active filters badges
+    function renderActiveFilters(categories, levels, priceVal) {
+        activeFiltersContainer.innerHTML = '';
+        
+        const addPill = (text, type, dataVal) => {
+            const pill = document.createElement('div');
+            pill.className = 'flex items-center bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm';
+            pill.innerHTML = `
+                ${text}
+                <button class="ml-2 hover:text-on-primary-fixed-variant remove-pill-btn" data-type="${type}" data-val="${dataVal}">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+            `;
+            activeFiltersContainer.appendChild(pill);
+        };
+
+        categories.forEach(cat => addPill(cat, 'category', cat));
+        levels.forEach(lvl => addPill(lvl, 'level', lvl));
+        
+        if (priceVal !== 'all') {
+            addPill(priceVal === 'free' ? 'Free' : 'Paid', 'price', priceVal);
+        }
+
+        // Bind remove triggers
+        activeFiltersContainer.querySelectorAll('.remove-pill-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.getAttribute('data-type');
+                const val = btn.getAttribute('data-val');
+                
+                if (type === 'category') {
+                    const check = Array.from(categoryChecks).find(c => c.getAttribute('data-category') === val);
+                    if (check) check.checked = false;
+                } else if (type === 'level') {
+                    const check = Array.from(levelChecks).find(c => c.getAttribute('data-level') === val);
+                    if (check) check.checked = false;
+                } else if (type === 'price') {
+                    const rad = Array.from(priceRadios).find(r => r.value === 'all');
+                    if (rad) rad.checked = true;
+                }
+                applyFilters();
+            });
+        });
+    }
+
+    function clearAllFilters() {
+        categoryChecks.forEach(c => c.checked = false);
+        levelChecks.forEach(l => l.checked = false);
+        priceRadios.forEach(r => {
+            r.checked = r.value === 'all';
+        });
+        if (searchInput) searchInput.value = '';
+        applyFilters();
+    }
+
+    // 5. Event Listeners Hook
+    if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
+    }
+    sortSelect.addEventListener('change', applyFilters);
+    categoryChecks.forEach(c => c.addEventListener('change', applyFilters));
+    levelChecks.forEach(l => l.addEventListener('change', applyFilters));
+    priceRadios.forEach(r => r.addEventListener('change', applyFilters));
+    clearBtn.addEventListener('click', clearAllFilters);
+
+    // Initial render
+    applyFilters();
+});
+</script>
+</body></html>

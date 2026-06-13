@@ -114,8 +114,6 @@ function showToast(message, type = 'primary') {
 
 // 3. MOBILE NAVIGATION DRAWER
 function initMobileNav() {
-    const toggles = document.querySelectorAll('button:has(span:contains("menu")), button:has(span:contains("Menu")), button:has(span.material-symbols-outlined:contains("menu"))');
-    
     // Fallback menu toggle detection by looking for menu icons inside buttons
     let menuBtn = null;
     document.querySelectorAll('button').forEach(btn => {
@@ -347,14 +345,6 @@ function openAuthModal(defaultTab = 'login') {
 
 // 5. SHOPPING CART SYSTEM
 function initShoppingCart() {
-    // Detect all cart click triggers
-    document.querySelectorAll('button:has(span:contains("shopping_cart")), button:has(span.material-symbols-outlined:contains("shopping_cart"))').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openCartDrawer();
-        });
-    });
-
     // Fallback cart trigger finder
     document.querySelectorAll('button, a').forEach(el => {
         if (el.innerHTML.includes('shopping_cart')) {
